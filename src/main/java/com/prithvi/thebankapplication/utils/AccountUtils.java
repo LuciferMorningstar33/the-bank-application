@@ -15,10 +15,10 @@ public class AccountUtils {
     public static final String ACCOUNT_FOUND_SUCCESS = "User Account Found";
     public static final String ACCOUNT_CREDITED_SUCCESS = "005";
     public static final String ACCOUNT_CREDITED_SUCCESS_MESSAGE = "Account has been credited successfully with amount :";
-    public static final String ACCOUNT_DEPOSITED_SUCCESS = "006";
-    public static final String ACCOUNT_DEPOSITED_SUCCESS_MESSAGE = "Account has been deposited successfully with amount :";
-    public static final String ACCOUNT_DEPOSITED_FAILURE = "007";
-    public static final String ACCOUNT_DEPOSITED_FAILURE_MESSAGE = "Insufficient funds to deposit the amount from your account";
+    public static final String ACCOUNT_DEBITED_SUCCESS = "006";
+    public static final String ACCOUNT_DEBITED_SUCCESS_MESSAGE = "Account has been debited successfully with amount :";
+    public static final String ACCOUNT_DEBITED_FAILURE = "007";
+    public static final String ACCOUNT_DEBITED_FAILURE_MESSAGE = "Insufficient funds to deposit the amount from your account";
     public static final String TRANSFER_SUCCESS_CODE = "008";
     public static final String TRANSFER_SUCCESS_MESSAGE = "Amount has been transferred successfully to account :";
     public static final String TRANSFER_FAILURE_CODE = "009";

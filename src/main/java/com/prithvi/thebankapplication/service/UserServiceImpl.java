@@ -158,8 +158,8 @@ public class UserServiceImpl implements UserService {
         User userToDebit = userRepository.findByAccountNumber(request.getAccountNumber());
         if(userToDebit.getAccountBalance().compareTo(request.getAmount()) == -1){
             return BankResponse.builder()
-                    .responseCode(AccountUtils.ACCOUNT_DEPOSITED_FAILURE)
-                    .responseMessage(AccountUtils.ACCOUNT_DEPOSITED_FAILURE_MESSAGE)
+                    .responseCode(AccountUtils.ACCOUNT_DEBITED_FAILURE)
+                    .responseMessage(AccountUtils.ACCOUNT_DEBITED_FAILURE_MESSAGE)
                     .accountInfo(AccountInfo.builder()
                             .accountNumber(userToDebit.getAccountNumber())
                             .accountName(userToDebit.getFirstName()+" "+userToDebit.getLastName()+" "+userToDebit.getOtherName())
@@ -181,8 +181,8 @@ public class UserServiceImpl implements UserService {
         transactionService.saveTransaction(transactionDto);
 
         return BankResponse.builder()
-                .responseCode(AccountUtils.ACCOUNT_DEPOSITED_SUCCESS)
-                .responseMessage(AccountUtils.ACCOUNT_DEPOSITED_SUCCESS_MESSAGE)
+                .responseCode(AccountUtils.ACCOUNT_DEBITED_SUCCESS)
+                .responseMessage(AccountUtils.ACCOUNT_DEBITED_SUCCESS_MESSAGE)
                 .accountInfo(AccountInfo.builder()
                         .accountName(userToDebit.getFirstName()+" "+userToDebit.getLastName()+" "+userToDebit.getOtherName())
                         .accountNumber(userToDebit.getAccountNumber())

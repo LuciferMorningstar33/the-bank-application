@@ -43,21 +43,53 @@ public class UserController {
         return userService.balanceEnquiry(request);
     }
 
+    @Operation(
+            summary = "Name Enquiry",
+            description = "Given an account number, check who is the user"
+    )
+    @ApiResponse(
+            responseCode = "200",
+            description = "Http Status 200 CREATED"
+    )
     @GetMapping("nameEnquiry")
     public String nameEnquiry(@RequestBody EnquiryRequest request) {
         return userService.nameEnquiry(request);
     }
 
+    @Operation(
+            summary = "Crediting an account",
+            description = "Given an account number and amount, process credit operation"
+    )
+    @ApiResponse(
+            responseCode = "205",
+            description = "Http Status 205 CREATED"
+    )
     @PostMapping("credit")
     public BankResponse creditAccount(@RequestBody CreditDebitRequest request) {
         return userService.creditAccount(request);
     }
 
+    @Operation(
+            summary = "Debiting from an account",
+            description = "Given an account number and amount, process debit operation"
+    )
+    @ApiResponse(
+            responseCode = "206",
+            description = "Http Status 206 CREATED"
+    )
     @PostMapping("debit")
     public BankResponse debitAccount(@RequestBody CreditDebitRequest request) {
         return userService.debitAccount(request);
     }
 
+    @Operation(
+            summary = "Transferring an amount from an account to another account",
+            description = "Given an account number and amount, process debit operation"
+    )
+    @ApiResponse(
+            responseCode = "208",
+            description = "Http Status 208 CREATED"
+    )
     @PostMapping("transfer")
     public BankResponse transferAccount(@RequestBody TransferRequest request) {
         return userService.transfer(request);

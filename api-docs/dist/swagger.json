@@ -1,0 +1,390 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "The Bank of Republic of People",
+    "description": "Backend Rest APIs for the bank",
+    "contact": {
+      "name": "Prithvi More",
+      "url": "https://github.com/LuciferMorningstar33/the-bank-app",
+      "email": "prithvi33.temp@gmail.com"
+    },
+    "license": {
+      "name": "The Bank of Republic of People",
+      "url": "https://github.com/LuciferMorningstar33/the-bank-app"
+    },
+    "version": "v1.0"
+  },
+  "externalDocs": {
+    "description": "The Bank App Documentation",
+    "url": "https://github.com/LuciferMorningstar33/the-bank-app"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/api/user": {
+      "post": {
+        "tags": [
+          "User Account Management APIs"
+        ],
+        "summary": "Create a New User Account",
+        "description": "Creating a new user and assigning an account ID",
+        "operationId": "createAccount",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Http Status 201 CREATED",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BankResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/transfer": {
+      "post": {
+        "tags": [
+          "User Account Management APIs"
+        ],
+        "operationId": "transferAccount",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BankResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/debit": {
+      "post": {
+        "tags": [
+          "User Account Management APIs"
+        ],
+        "operationId": "debitAccount",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreditDebitRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BankResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/credit": {
+      "post": {
+        "tags": [
+          "User Account Management APIs"
+        ],
+        "operationId": "creditAccount",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreditDebitRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BankResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bankStatement": {
+      "get": {
+        "tags": [
+          "transaction-controller"
+        ],
+        "operationId": "generateBankStatemenet",
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Transaction"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/nameEnquiry": {
+      "get": {
+        "tags": [
+          "User Account Management APIs"
+        ],
+        "operationId": "nameEnquiry",
+        "parameters": [
+          {
+            "name": "request",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EnquiryRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/balanceEnquiry": {
+      "get": {
+        "tags": [
+          "User Account Management APIs"
+        ],
+        "summary": "Balance Enquiry",
+        "description": "Given an account number, check how much the user has",
+        "operationId": "balanceEnquiry",
+        "parameters": [
+          {
+            "name": "request",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EnquiryRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Http Status 200 SUCCESS",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BankResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserRequest": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "otherName": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "stateOfOrigin": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "alternativePhoneNumber": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountInfo": {
+        "type": "object",
+        "properties": {
+          "User Account Name": {
+            "type": "string"
+          },
+          "User Account Balance": {
+            "type": "number"
+          },
+          "User Account Number": {
+            "type": "string"
+          }
+        }
+      },
+      "BankResponse": {
+        "type": "object",
+        "properties": {
+          "responseCode": {
+            "type": "string"
+          },
+          "responseMessage": {
+            "type": "string"
+          },
+          "accountInfo": {
+            "$ref": "#/components/schemas/AccountInfo"
+          }
+        }
+      },
+      "TransferRequest": {
+        "type": "object",
+        "properties": {
+          "sourceAccountNumber": {
+            "type": "string"
+          },
+          "destinationAccountNumber": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          }
+        }
+      },
+      "CreditDebitRequest": {
+        "type": "object",
+        "properties": {
+          "accountNumber": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          }
+        }
+      },
+      "Transaction": {
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "type": "string"
+          },
+          "transactionType": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "accountNumber": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "EnquiryRequest": {
+        "type": "object",
+        "properties": {
+          "accountNumber": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

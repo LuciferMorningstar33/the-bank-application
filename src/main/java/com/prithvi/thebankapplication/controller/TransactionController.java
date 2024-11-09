@@ -22,8 +22,7 @@ public class TransactionController {
 
     @Operation(
             summary = "Generating a Bank Statement and sending via email as pdf",
-            description = "Given an account number, start date and end date it will generate history of transaction associated with this account.",
-            tags = "Please enter in YYYY-MM-DD format"
+            description = "Given an account number, start date and end date it will generate history of transaction associated with this account. Please enter in YYYY-MM-DD format"
 
     )
     @ApiResponse(

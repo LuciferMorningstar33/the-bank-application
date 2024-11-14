@@ -5,18 +5,18 @@
     "description": "Backend Rest APIs for the bank",
     "contact": {
       "name": "Prithvi More",
-      "url": "https://github.com/LuciferMorningstar33/the-bank-app",
+      "url": "https://github.com/LuciferMorningstar33/the-bank-application",
       "email": "prithvi33.temp@gmail.com"
     },
     "license": {
       "name": "The Bank of Republic of People",
-      "url": "https://github.com/LuciferMorningstar33/the-bank-app"
+      "url": "https://github.com/LuciferMorningstar33/the-bank-application"
     },
     "version": "v1.0"
   },
   "externalDocs": {
     "description": "The Bank App Documentation",
-    "url": "https://github.com/LuciferMorningstar33/the-bank-app"
+    "url": "https://github.com/LuciferMorningstar33/the-bank-application"
   },
   "servers": [
     {
@@ -26,6 +26,24 @@
   ],
   "paths": {
     "/api/user": {
+      "get": {
+        "tags": [
+          "User Account Management APIs"
+        ],
+        "operationId": "fun",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "tags": [
           "User Account Management APIs"
@@ -62,6 +80,8 @@
         "tags": [
           "User Account Management APIs"
         ],
+        "summary": "Transferring an amount from an account to another account",
+        "description": "Given an account number and amount, process debit operation",
         "operationId": "transferAccount",
         "requestBody": {
           "content": {
@@ -74,8 +94,8 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "208": {
+            "description": "Http Status 208 CREATED",
             "content": {
               "*/*": {
                 "schema": {
@@ -92,6 +112,8 @@
         "tags": [
           "User Account Management APIs"
         ],
+        "summary": "Debiting from an account",
+        "description": "Given an account number and amount, process debit operation",
         "operationId": "debitAccount",
         "requestBody": {
           "content": {
@@ -104,8 +126,8 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "206": {
+            "description": "Http Status 206 CREATED",
             "content": {
               "*/*": {
                 "schema": {
@@ -122,6 +144,8 @@
         "tags": [
           "User Account Management APIs"
         ],
+        "summary": "Crediting an account",
+        "description": "Given an account number and amount, process credit operation",
         "operationId": "creditAccount",
         "requestBody": {
           "content": {
@@ -134,8 +158,8 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "205": {
+            "description": "Http Status 205 CREATED",
             "content": {
               "*/*": {
                 "schema": {
@@ -152,6 +176,8 @@
         "tags": [
           "transaction-controller"
         ],
+        "summary": "Generating a Bank Statement and sending via email as pdf",
+        "description": "Given an account number, start date and end date it will generate history of transaction associated with this account. Please enter in YYYY-MM-DD format",
         "operationId": "generateBankStatemenet",
         "parameters": [
           {
@@ -181,7 +207,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Http Status 200 CREATED",
             "content": {
               "*/*": {
                 "schema": {
@@ -201,6 +227,8 @@
         "tags": [
           "User Account Management APIs"
         ],
+        "summary": "Name Enquiry",
+        "description": "Given an account number, check who is the user",
         "operationId": "nameEnquiry",
         "parameters": [
           {
@@ -214,7 +242,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Http Status 200 CREATED",
             "content": {
               "*/*": {
                 "schema": {

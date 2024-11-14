@@ -5,6 +5,7 @@ import com.prithvi.thebankapplication.entity.User;
 import com.prithvi.thebankapplication.repository.UserRepository;
 import com.prithvi.thebankapplication.utils.AccountUtils;
 import com.prithvi.thebankapplication.utils.EmailUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +54,8 @@ public class UserServiceImpl implements UserService {
                  .build();
 
         User savedUser = userRepository.save(newUser);
+        System.out.println(userRequest);
+        System.out.println("Hello");
 
         //Send Mail Alert
         EmailDetails emailDetails = EmailDetails.builder()

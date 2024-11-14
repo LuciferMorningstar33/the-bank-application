@@ -94,4 +94,9 @@ public class UserController {
     public BankResponse transferAccount(@RequestBody TransferRequest request) {
         return userService.transfer(request);
     }
+
+    @GetMapping
+    public String fun(){
+        return "Live is Server";
+    }
 }

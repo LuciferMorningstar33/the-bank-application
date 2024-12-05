@@ -5,9 +5,10 @@ import com.prithvi.thebankapplication.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.tags.Tags;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @RestController
 @RequestMapping("/api/user")
@@ -17,6 +18,10 @@ public class UserController {
     @Autowired
     UserService userService;
 
+//    @Qualifier("corsConfigurer")
+//    @Autowired
+//    WebMvcConfigurer configurer;
+
     @Operation(
             summary = "Create a New User Account",
             description = "Creating a new user and assigning an account ID"
@@ -25,9 +30,15 @@ public class UserController {
             responseCode = "201",
             description = "Http Status 201 CREATED"
     )
-    @PostMapping
+    @PostMapping("register")
     public BankResponse createAccount(@RequestBody UserRequest userRequest) {
         return userService.createAccount(userRequest);
+    }
+
+
+    @PostMapping("login")
+    public BankResponse login(@RequestBody LoginDto loginDto) {
+        return userService.login(loginDto);
     }
 
     @Operation(
@@ -95,8 +106,8 @@ public class UserController {
         return userService.transfer(request);
     }
 
-    @GetMapping
-    public String fun(){
-        return "Live is Server";
-    }
+//    @GetMapping
+//    public String fun(){
+//        return "Live is Server";
+//    }
 }
